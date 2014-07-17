@@ -197,9 +197,10 @@ ${1}"
 run_KWStyle() {
   
   for FILE in `git diff-index --cached --diff-filter=ACMR --name-only HEAD` ; do
-      if run_style_on_file "$FILE" KWStyle; then     
+      run_style_on_file "$FILE" KWStyle     
+			echo $FILE
       run_KWStyle_on_file "$FILE"
-    fi || return
+      return
   done
 }
 
