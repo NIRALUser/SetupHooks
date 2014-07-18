@@ -29,13 +29,13 @@ Pre-commit hook:
 Prepare-commit-msg hook:
 - Modifies the instructions in the commit message: the user has to write a flag in the beginning of his commit message. 
 Available flags are as follow:
-# BUG: - fix for runtime crash or incorrect result
-# COMP: - compiler error or warning fix
-# DOC: - documentation change
-# ENH: - new functionality
-# PERF: - performance improvement
-# STYLE: - no logic impact (indentation, comments)
-# WIP: - Work In Progress not ready for merge
+- BUG: - fix for runtime crash or incorrect result
+- COMP: - compiler error or warning fix
+- DOC: - documentation change
+- ENH: - new functionality
+- PERF: - performance improvement
+- STYLE: - no logic impact (indentation, comments)
+- WIP: - Work In Progress not ready for merge
 
 Commit-msg hook:
 - Checks the flag of the commit message (it has to respect the instructions given in the prepare-commit-msg).
