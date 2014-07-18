@@ -5,12 +5,18 @@ Generic hooks checking the coding style, specifying the type of commit and synta
 
 
 
-HOW TO USE THEM?
+HOW TO USE THIS PROJECT?
 =========================================================================================================
-- Copy the Utilities folder inside your repository.
-- Run the script SetupGitHooks (make sure it is executable), it pulls the hooks directly from this repository so you dont need to copy them manually.
-- You can do your commit as you used to do.
 
+- Clone this repo inside at the root of your project : $ git clone https://github.com/jeanyves-yang/hooks.git
+- Run the script which will set up the hooks (and add this cloned repo to the ignore list, so it does not pollute your own commits): 
+  - $ cd hooks
+  - $ git checkout Utilities
+  - At this point, you might want to check KWStyle.xml.in and modify it to suit your coding preferences.
+  - $ ./SetupGitHooks 
+- You can commit as you used to do and continue your project with these new hooks. 
+
+NOTE: If needed, git commit --no-verify will enable you to bypass the hooks.
 
 
 FEATURES
@@ -38,6 +44,5 @@ Commit-msg hook:
 IN PROGRESS
 =========================================================================================================
 
-- Automatically pull the KWStyle/uncrustify files so that only the script SetupGitHooks would have to be copied and run to setup everything.
-- Script which automatically corrects the style if run (independant of the hooks, so you can still commit if you dont want to follow the style, for instance if the previous commit didnt follow the style either).
+- Write a script which automatically corrects the style if run (independant of the hooks, so you can still commit if you dont want to follow the style, for instance if the previous commit didnt follow the style either). 
 
