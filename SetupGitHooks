@@ -10,6 +10,8 @@ printErrorAndExit() {
   exit 1
 }
 
+u=$(cd "$(echo "$0"|sed 's/[^/]*$//')"; pwd)
+cd "$u/../"
 # Set up uncrustify hook.
 echo "Setting up the uncrustify hook..."
 git config hooks.uncrustify.conf "hooks/uncrustify.conf"
@@ -23,8 +25,7 @@ git config hooks.KWStyle false
 echo "Setting up the cppcheck hook..."
 git config hooks.cppcheck false
 
-u=$(cd "$(echo "$0"|sed 's/[^/]*$//')"; pwd)
-cd "$u/../.git/hooks"
+cd ".git/hooks"
 
 # We need to have a git repository to do a pull.
 if ! test -d ./.git; then
