@@ -12,6 +12,9 @@ printErrorAndExit() {
 
 u=$(cd "$(echo "$0"|sed 's/[^/]*$//')"; pwd)
 cd "$u/../"
+
+# Ignore the repo SetupHooks, you dont want it to pollute your commits.
+git update-index --assume-unchanged hooks
 # Set up uncrustify hook.
 echo "Setting up the uncrustify hook..."
 git config hooks.uncrustify.conf "hooks/uncrustify.conf"
