@@ -37,7 +37,7 @@ git config hooks.cppcheck false
 echo "Pulling the hooks..." &&
 if GIT_DIR=.. git for-each-ref refs/remotes/origin/hooks 2>/dev/null | \
   grep -q '\<refs/remotes/origin/hooks$'; then
-  url=https://github.com/jeanyves-yang/hooks.git
+  url=https://github.com/jeanyves-yang/hooks.git/hooks
   branch=master
 fi &&
 
