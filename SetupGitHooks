@@ -14,21 +14,21 @@ u=$(cd "$(echo "$0"|sed 's/[^/]*$//')"; pwd)
 cd "$u/../"
 
 # Ignore the repo SetupHooks, you dont want it to pollute your commits.
-git update-index --assume-unchanged hooks
-# Set up uncrustify hook.
+git update-index --assume-unchanged SetupHooks
+# Set up uncrustify hook. (not used for now)
 echo "Setting up the uncrustify hook..."
-git config hooks.uncrustify.conf "hooks/uncrustify.conf"
+git config hooks.uncrustify.conf "SetupHooks/uncrustify.conf"
 
 # Set up KWStyle hook.
 echo "Setting up the KWStyle hook..."
-git config hooks.KWStyle.conf "hooks/KWStyle.xml.in"
+git config hooks.KWStyle.conf "SetupHooks/KWStyle.xml.in"
 git config hooks.KWStyle false
 
 # Set up cppcheck hook.
 echo "Setting up the cppcheck hook..."
 git config hooks.cppcheck false
 
-cd ".git/hooks"
+cd ".git/SetupHooks"
 
 # We need to have a git repository to do a pull.
 if ! test -d ./.git; then
@@ -38,7 +38,7 @@ fi &&
 # Grab the hooks.
 
 echo "Pulling the hooks..."
-url=https://github.com/jeanyves-yang/hooks.git
+url=https://github.com/jeanyves-yang/SetupHooks.git
 branch=hooks
 git fetch -q "$url" "$branch" &&
 git reset -q --hard FETCH_HEAD ||
