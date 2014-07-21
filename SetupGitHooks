@@ -25,25 +25,47 @@ git config hooks.KWStyle.conf "SetupHooks/KWStyle.xml.in"
 git config hooks.KWStyle false
 
 # Set up cppcheck hook.
-echo "Setting up the cppcheck hook..."
+echo -e "Setting up the cppcheck hook...\n"
 git config hooks.cppcheck false
 
-cd ".git/hooks"
-
-# We need to have a git repository to do a pull.
-if ! test -d ./.git; then
-  git init || printErrorAndExit "Could not run git init."
-fi &&
-
 # Grab the hooks.
+cd SetupHooks/.git
+git clone "https://github.com/jeanyves-yang/SetupHooks.git" SetupHooksTmp
+cd "SetupHooksTmp"
+git checkout hooks
 
-echo "Pulling the hooks..."
-url=https://github.com/jeanyves-yang/SetupHooks.git
-branch=hooks
-git fetch -q "$url" "$branch" &&
-git reset -q --hard FETCH_HEAD ||
-    printErrorAndExit "Downloading the hooks failed."
+echo -e "\n"
 
+if test -f "../../../.git/hooks/commit-msg" || test -f "../../../.git/hooks/prepare-commit-msg"; then
+  echo -e "commit-msg or prepare-commit-msg already exists.\nIf you wish to overwrite them please do rm ../.git/hooks/commit-msg or rm ../.git/hooks/prepare-commit-msg then run this script again."
+else
+  mv commit-msg ../../../.git/hooks/commit-msg
+  if test -f "../../../.git/hooks/commit-msg"; then
+    echo "commit-msg successfully pulled"
+  else
+    echo "pulling commit-msg failed"
+  fi
+  mv prepare-commit-msg ../../../.git/hooks/prepare-commit-msg
+  if test -f "../../../.git/hooks/prepare-commit-msg"; then
+    echo "prepare-commit-msg successfully pulled"
+  else
+    echo "pulling prepare-commit-msg failed"
+  fi
+fi
+
+if test -f "../../../.git/hooks/pre-commit"; then
+  echo "pre-commit already exists.\nIf you wish to overwrite it please do rm ../.git/hooks/pre-commit then run this script again."
+else
+  mv pre-commit ../../../.git/hooks/pre-commit
+  if test -f "../../../.git/hooks/pre-commit";then 
+    echo "commit-msg successfully pulled"
+  else
+    echo "pulling commit-msg failed"
+  fi
+fi
+
+cd ..
+rm -rf SetupHooksTmp
 cd ../..
 
 echo "Done."
