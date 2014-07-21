@@ -28,7 +28,7 @@ git config hooks.KWStyle false
 echo "Setting up the cppcheck hook..."
 git config hooks.cppcheck false
 
-cd ".git/SetupHooks"
+cd ".git/hooks"
 
 # We need to have a git repository to do a pull.
 if ! test -d ./.git; then
