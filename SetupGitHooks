@@ -13,8 +13,6 @@ printErrorAndExit() {
 u=$(cd "$(echo "$0"|sed 's/[^/]*$//')"; pwd)
 cd "$u/../"
 
-# Ignore the repo SetupHooks, you dont want it to pollute your commits.
-git update-index --assume-unchanged SetupHooks
 # Set up uncrustify hook. (not used for now)
 echo "Setting up the uncrustify hook..."
 git config hooks.uncrustify.conf "SetupHooks/uncrustify.conf"
@@ -57,7 +55,7 @@ if test -f "../../../.git/hooks/pre-commit"; then
   echo "pre-commit already exists.\nIf you wish to overwrite it please do rm ../.git/hooks/pre-commit then run this script again."
 else
   mv pre-commit ../../../.git/hooks/pre-commit
-  if test -f "../../../.git/hooks/pre-commit";then 
+  if test -f "../../../.git/hooks/pre-commit"; then 
     echo "commit-msg successfully pulled"
   else
     echo "pulling commit-msg failed"
@@ -68,4 +66,12 @@ cd ..
 rm -rf SetupHooksTmp
 cd ../..
 
-echo "Done."
+# Ignore the repo SetupHooks, you dont want it to pollute your commits.
+if test -d ".gitignore"; then
+  if ! grep -q SetupHooks .gitignore; then
+    echo "SetupHooks" >> .gitignore
+  fi
+  echo "SetupHooks" >> .gitignore
+fi
+
+echo -e "\nDone."
