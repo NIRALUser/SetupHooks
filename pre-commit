@@ -148,7 +148,8 @@ git config \"hooks.$1.styleSkipUnstaged\" $file_sha"
 # KWStyle.
 check_for_KWStyle() {
   KWStyle_path=$(git config hooks.KWStyle.path) ||
-  KWStyle_path=hooks/KWStyle
+  KWStyle_path=$(which KWStyle) ||
+  KWStyle_path=SetupHooks/KWStyle
   
   if [ $? != 0 ] ; then
     echo "KWStyle executable was not found.
