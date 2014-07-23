@@ -8,7 +8,7 @@ Generic hooks checking the coding style, specifying the type of commit and synta
 HOW TO USE THIS PROJECT?
 =========================================================================================================
 
-- Clone this repo inside at the root of your project : $ git clone https://github.com/jeanyves-yang/hooks.git
+- Clone this repo inside at the root of your project : $ git clone https://github.com/jeanyves-yang/SetupHooks.git
 - You need to have KWStyle installed. Please refer to this page http://www.itk.org/Wiki/ITK/Release_4/Coding_Style/KWStyle if you do not have it. Once built, add the path of the executable KWStyle to your PATH variable : export PATH=$PATH:[path_to_KWStyle] in bash, or set path = ($path [path_to_KWStyle]) in tcsh. You might have to do it for each new terminal. 
 Otherwise, you can either move the executable KWStyle to the branch Utilities of the project SetupHooks, or you can add the path of KWStyle to your .bashrc or .tcshrc.
 - Run the script which will set up the hooks (and add this cloned repo to the ignore list, so it does not pollute your own commits): 
